@@ -1,0 +1,105 @@
+/*
+ * DonaVida: estilos propios de la plantilla hija cassiopeia_donavida.
+ *
+ * Cassiopeia carga este archivo después de template.css y del esquema de color,
+ * así que acá solo se sobrescriben sus variables y los colores que Bootstrap
+ * dejó compilados en azul (#010156).
+ *
+ * Paleta:
+ *   principal   #b01018  rgb(176, 16, 24)  contraste 7,2:1 sobre blanco
+ *   oscuro      #7d0b11  rgb(125, 11, 17)  hover y final del degradado del header
+ *   más oscuro  #6a0a0e  rgb(106, 10, 14)  botón presionado
+ */
+
+:root {
+  /* Cassiopeia: header, links y botón primario */
+  --cassiopeia-color-primary: #b01018;
+  --cassiopeia-color-link: #b01018;
+  --cassiopeia-color-hover: #7d0b11;
+  --link-color: #b01018;
+  --link-color-rgb: 176, 16, 24;
+  --link-hover-color: #7d0b11;
+  --link-hover-color-rgb: 125, 11, 17;
+
+  /* Bootstrap: utilidades (.text-primary, .bg-primary), alertas y anillo de foco */
+  --primary: #b01018;
+  --primary-rgb: 176, 16, 24;
+  --primary-text-emphasis: #46060a;
+  --primary-bg-subtle: #efcfd1;
+  --primary-border-subtle: #df9fa3;
+  --focus-ring-color: #b0101840;
+}
+
+/* Logo: el PNG tiene el doble de resolución para pantallas de alta densidad */
+.container-header .brand-logo img {
+  height: 3rem;
+  width: auto;
+}
+
+/* Botones */
+.btn-primary {
+  --btn-bg: #b01018;
+  --btn-border-color: #b01018;
+  --btn-hover-bg: #7d0b11;
+  --btn-hover-border-color: #7d0b11;
+  --btn-focus-shadow-rgb: 176, 16, 24;
+  --btn-active-bg: #6a0a0e;
+  --btn-active-border-color: #6a0a0e;
+  --btn-disabled-bg: #b01018;
+  --btn-disabled-border-color: #b01018;
+}
+
+.btn-outline-primary {
+  --btn-color: #b01018;
+  --btn-border-color: #b01018;
+  --btn-hover-bg: #b01018;
+  --btn-hover-border-color: #b01018;
+  --btn-focus-shadow-rgb: 176, 16, 24;
+  --btn-active-bg: #7d0b11;
+  --btn-active-border-color: #7d0b11;
+  --btn-disabled-color: #b01018;
+  --btn-disabled-border-color: #b01018;
+}
+
+/* Componentes: elemento activo */
+.dropdown-menu {
+  --dropdown-link-active-bg: #b01018;
+}
+
+.nav-pills {
+  --nav-pills-link-active-bg: #b01018;
+}
+
+.list-group {
+  --list-group-active-bg: #b01018;
+  --list-group-active-border-color: #b01018;
+}
+
+.pagination {
+  --pagination-focus-box-shadow: 0 0 0 .25rem #b0101840;
+  --pagination-active-bg: #b01018;
+  --pagination-active-border-color: #b01018;
+}
+
+.accordion {
+  --accordion-btn-focus-box-shadow: 0 0 0 .25rem #b0101840;
+}
+
+.btn-close {
+  --btn-close-focus-shadow: 0 0 0 .25rem #b0101840;
+}
+
+/* Formularios */
+.form-control:focus,
+.form-select:focus,
+.custom-select:focus,
+.form-check-input:focus,
+.nav-link:focus-visible {
+  box-shadow: 0 0 0 .25rem #b0101840;
+}
+
+.form-check-input:checked,
+.form-check-input[type="checkbox"]:indeterminate {
+  background-color: #b01018;
+  border-color: #b01018;
+}
