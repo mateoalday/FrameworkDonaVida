@@ -17,6 +17,7 @@ Ejecuta todos los scripts. Se puede correr las veces que haga falta: lo que ya e
 | Script | Issue | Qué deja en la base |
 |---|---|---|
 | `plantilla.php` | TP2-9 | Plantilla hija registrada y predeterminada, con logo y Roboto; Main Menu en el header; portada "Inicio"; orden del menú |
+| `portada.php` | – | Módulos "Portada - Hero", "Portada - Por qué donar" y "Pie de página"; Login Form despublicado |
 | `sedes.php` | TP2-7 | Categoría y campo "Horarios", las 5 sedes, ítem de menú "Sedes" y módulo "Nuestras sedes" |
 | `comun.php` | – | Arranque de Joomla y funciones compartidas (no se ejecuta solo) |
 | `todo.php` | – | Ejecuta todos los anteriores; `plantilla.php` va al final porque ordena el menú |
