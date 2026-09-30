@@ -4,6 +4,18 @@ Página pública con las sedes de donación y un módulo en Inicio que las lista
 
 Casi todo lo de esta sección se guarda en la base de datos (contactos, campo, menú y módulo), así que no aparece en git. Este documento registra los pasos para poder recrearla en otra instalación. Las rutas del panel están en inglés porque el sitio usa el idioma `en-GB`.
 
+## Recrearla automáticamente
+
+[`scripts/sedes.php`](scripts/sedes.php) hace los pasos 1 a 6 en la base local. Desde la carpeta del proyecto, con MySQL de XAMPP encendido:
+
+```
+C:\xampp\php\php.exe docs\scripts\sedes.php
+```
+
+Se puede ejecutar más de una vez: lo que ya existe se actualiza en lugar de duplicarse (busca cada elemento por su alias), y no toca el contenido de otras secciones. Usa las clases de Joomla, así que respeta el prefijo de tablas y los IDs de cada base. El contenido del módulo lo toma de `modulos/sedes.html`.
+
+Los pasos manuales de abajo hacen lo mismo desde el panel.
+
 ## 1. Categoría
 
 **Components → Contacts → Categories → New**
