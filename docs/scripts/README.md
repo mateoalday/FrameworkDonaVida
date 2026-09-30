@@ -17,7 +17,7 @@ Ejecuta todos los scripts. Se puede correr las veces que haga falta: lo que ya e
 | Script | Issue | Qué deja en la base |
 |---|---|---|
 | `plantilla.php` | TP2-9 | Plantilla hija registrada y predeterminada, con logo y Roboto; Main Menu en el header; portada "Inicio"; orden del menú |
-| `portada.php` | – | Módulos "Portada - Hero", "Portada - Por qué donar" y "Pie de página"; Login Form despublicado |
+| `requisitos.php` | TP2-8 | Categoría y artículo "Requisitos para donar sangre", ítem de menú "Requisitos" y módulo "Preguntas frecuentes" |
 | `sedes.php` | TP2-7 | Categoría y campo "Horarios", las 5 sedes, ítem de menú "Sedes" y módulo "Nuestras sedes" |
 | `comun.php` | – | Arranque de Joomla y funciones compartidas (no se ejecuta solo) |
 | `todo.php` | – | Ejecuta todos los anteriores; `plantilla.php` va al final porque ordena el menú |
@@ -33,4 +33,15 @@ Ejecuta todos los scripts. Se puede correr las veces que haga falta: lo que ya e
    - Si después cambiás algo en el panel, actualizá el script en el mismo PR.
 4. Probalo sobre una copia de tu base antes de subirlo: creá la copia en phpMyAdmin (Operations → Copy database to) y ejecutá `set DONAVIDA_DB=nombre_de_la_copia` antes del script.
 
-Los artículos necesitan registros extra además de su tabla (flujo de publicación, artículos destacados). Si tu sección usa artículos, conviene sumar una función para crearlos en `comun.php` en vez de resolverlo en cada script.
+### Funciones de `comun.php`
+
+| Función | Para qué |
+|---|---|
+| `buscarId` | Id de la primera fila que cumple las condiciones (0 si no hay) |
+| `guardar` | Crea o actualiza una fila con las validaciones de la tabla de Joomla |
+| `combinarParams` | Cambia algunas claves de un JSON de parámetros sin perder las demás |
+| `leerHtml` | Lee un HTML de `docs/` sin el comentario que lo documenta |
+| `guardarCategoria` | Crea o actualiza una categoría por alias |
+| `guardarArticulo` | Crea o actualiza un artículo por alias, con su registro en el flujo de publicación (sin él no aparece en Content → Articles) |
+| `asignarModulo` | Deja un módulo visible solo en los ítems de menú indicados |
+| `idComponente` | Id de un componente, para el `component_id` de los ítems de menú |

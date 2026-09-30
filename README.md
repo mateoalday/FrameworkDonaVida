@@ -38,6 +38,8 @@ Las sedes, campañas, menús, módulos y la configuración de la plantilla se gu
 docs/antes/            Capturas de Joomla y Cassiopeia sin modificar
 docs/despues/          Capturas del sitio terminado
 docs/modificaciones.md Tabla de cambios realizados
+docs/articulos/        Copias del HTML de los artículos (las cargan los scripts)
+docs/modulos/          Copias del HTML de los módulos Custom (las cargan los scripts)
 docs/scripts/          Scripts que cargan el contenido de cada sección en la base local
 templates/             Plantillas (incluye la plantilla hija de DonaVida)
 ```

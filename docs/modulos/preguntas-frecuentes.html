@@ -1,0 +1,115 @@
+<!--
+  Módulo "Preguntas frecuentes" (TP2-8)
+  Tipo: Custom (mod_custom) · Posición: main-bottom · Asignación: solo Requisitos
+  Layout: acordeon (de cassiopeia_donavida, carga el collapse de Bootstrap)
+
+  El contenido de un módulo Custom se guarda en la base de datos, así que esta
+  copia sirve para documentarlo y para recrearlo con docs/scripts/requisitos.php.
+  Si se edita desde el panel, pegar el HTML con el editor desactivado
+  ("Toggle Editor"): TinyMCE puede borrar los atributos data-bs-*.
+
+  Abrir este archivo con un editor de código (VS Code), no con el navegador.
+
+  Usa el componente accordion de Bootstrap 5: cada pregunta es un botón con
+  data-bs-toggle="collapse" que abre su respuesta, y data-bs-parent hace que
+  al abrir una se cierre la anterior.
+-->
+<p>Las respuestas son orientativas: en la entrevista previa a la donación un profesional confirma si podés donar.</p>
+<div class="accordion" id="faq-donavida">
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-1" aria-expanded="false" aria-controls="faq-1">¿Qué edad tengo que tener para donar?</button>
+    </h3>
+    <div id="faq-1" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">Entre 18 y 65 años. Si es tu primera donación y tenés más de 60, consultá antes en la sede.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-2" aria-expanded="false" aria-controls="faq-2">¿Cuánto tengo que pesar?</button>
+    </h3>
+    <div id="faq-2" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">Más de 50 kg. En cada donación se extraen unos 450 ml, y con menos peso esa cantidad es demasiado para el cuerpo.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-3" aria-expanded="false" aria-controls="faq-3">Me hice un tatuaje o un piercing, ¿puedo donar?</button>
+    </h3>
+    <div id="faq-3" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">Sí, pero tenés que esperar 12 meses desde que te lo hiciste. Lo mismo vale para el maquillaje permanente y la acupuntura.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-4" aria-expanded="false" aria-controls="faq-4">Estoy tomando medicación, ¿puedo donar?</button>
+    </h3>
+    <div id="faq-4" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">Depende del medicamento. Muchos tratamientos habituales, como los anticonceptivos o los de la presión controlada, no impiden donar. Con antibióticos hay que esperar 7 días desde la última toma. Llevá el nombre de lo que tomás a la entrevista.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-5" aria-expanded="false" aria-controls="faq-5">Viajé hace poco, ¿puedo donar?</button>
+    </h3>
+    <div id="faq-5" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">En general sí. Si estuviste en una zona con paludismo (malaria) o con brotes de dengue, zika o chikungunya, hay que esperar un tiempo que depende del destino. Contá en la entrevista a dónde viajaste y cuándo volviste.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-6" aria-expanded="false" aria-controls="faq-6">¿Tengo que ir en ayunas?</button>
+    </h3>
+    <div id="faq-6" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">No. Conviene desayunar liviano (té, café o mate, pan, galletitas o fruta), sin lácteos ni grasas, y tomar bastante agua.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-7" aria-expanded="false" aria-controls="faq-7">¿Cada cuánto puedo donar?</button>
+    </h3>
+    <div id="faq-7" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">Tienen que pasar al menos 2 meses entre una donación y otra. Por año, los hombres pueden donar hasta 4 veces y las mujeres hasta 3.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-8" aria-expanded="false" aria-controls="faq-8">Estoy resfriado o tuve fiebre, ¿puedo donar?</button>
+    </h3>
+    <div id="faq-8" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">Esperá a estar recuperado: al menos 2 semanas sin fiebre ni síntomas.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-9" aria-expanded="false" aria-controls="faq-9">Estoy embarazada o dando de mamar, ¿puedo donar?</button>
+    </h3>
+    <div id="faq-9" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">No durante el embarazo ni la lactancia. Después del parto hay que esperar al menos 6 meses y haber terminado de amamantar.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-10" aria-expanded="false" aria-controls="faq-10">Me vacuné hace poco, ¿puedo donar?</button>
+    </h3>
+    <div id="faq-10" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">La mayoría de las vacunas, como la antigripal, no impiden donar si te sentís bien. Algunas vacunas a virus vivos piden esperar unas semanas: decí en la entrevista cuál te aplicaste y cuándo.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-11" aria-expanded="false" aria-controls="faq-11">¿Qué tengo que llevar?</button>
+    </h3>
+    <div id="faq-11" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">Solo tu DNI. Si donás para un paciente en particular, llevá también su nombre completo y el hospital donde está internado.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h3 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-12" aria-expanded="false" aria-controls="faq-12">¿Cuánto tiempo lleva? ¿Es seguro?</button>
+    </h3>
+    <div id="faq-12" class="accordion-collapse collapse" data-bs-parent="#faq-donavida">
+      <div class="accordion-body">Todo el proceso lleva entre 40 minutos y una hora, y la extracción en sí unos 10 minutos. Es seguro: todo el material es estéril y descartable, y se usa una sola vez.</div>
+    </div>
+  </div>
+</div>
