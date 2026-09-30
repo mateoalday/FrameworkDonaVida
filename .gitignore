@@ -1,5 +1,5 @@
 # Configuración local de Joomla (contiene la contraseña de la base de datos)
-configuration.php
+/configuration.php
 
 # Archivos temporales, caché y logs generados por Joomla
 /tmp/*
