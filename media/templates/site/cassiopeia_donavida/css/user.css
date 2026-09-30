@@ -103,3 +103,88 @@
   background-color: #b01018;
   border-color: #b01018;
 }
+
+/*
+ * Portada (docs/portada.md): módulos Hero, Por qué donar y Pie de página.
+ * El resto del diseño de esos módulos sale de clases de Bootstrap en su HTML.
+ */
+
+/* Hero: ocupa todo el ancho en la posición banner */
+.hero-donavida {
+  background-color: #b01018;
+  background-image: linear-gradient(135deg, #b01018 0%, #7d0b11 100%);
+}
+
+.hero-donavida .lead {
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+.hero-donavida__icono {
+  display: inline-block;
+  font-size: 3rem;
+  opacity: .9;
+}
+
+.hero-donavida .btn-light {
+  color: #b01018;
+  font-weight: 600;
+}
+
+/* Por qué donar: tarjetas de la posición top-a */
+.por-que-donar {
+  padding-block: 1.5rem;
+}
+
+.por-que-donar__item {
+  padding: 2rem 1.5rem;
+  background-color: #fff;
+  border-top: 4px solid #b01018;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.por-que-donar__item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 .5rem 1.25rem rgba(0, 0, 0, .12) !important;
+}
+
+.por-que-donar__icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.75rem;
+  color: #b01018;
+  background-color: #efcfd1;
+  border-radius: 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .por-que-donar__item {
+    transition: none;
+  }
+
+  .por-que-donar__item:hover {
+    transform: none;
+  }
+}
+
+/* Pie de página: Cassiopeia centra el contenido del footer, acá ocupa todo el ancho */
+.footer .grid-child {
+  align-items: stretch;
+}
+
+.footer-donavida {
+  width: 100%;
+  text-align: left;
+}
+
+.footer-donavida li {
+  margin-bottom: .35rem;
+}
+
+.footer-donavida__legal {
+  border-color: rgba(255, 255, 255, .3) !important;
+  opacity: .85;
+}
