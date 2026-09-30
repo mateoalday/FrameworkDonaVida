@@ -12,7 +12,10 @@
  */
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Table\Category;
+use Joomla\CMS\Table\Content;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\User\User;
 use Joomla\CMS\User\UserFactoryInterface;
 use Joomla\Database\DatabaseDriver;
 use Joomla\Database\DatabaseInterface;
@@ -108,6 +111,130 @@ function guardar(Table $tabla, int $id, array $datos, string $descripcion): void
 function combinarParams(?string $json, array $cambios): string
 {
     return json_encode(array_merge(json_decode($json ?: '{}', true) ?: [], $cambios));
+}
+
+/**
+ * Lee un HTML de docs/ (por ejemplo 'modulos/sedes.html') sin el comentario inicial que lo documenta.
+ */
+function leerHtml(string $archivo): string
+{
+    return trim(preg_replace('/^\s*<!--.*?-->/s', '', file_get_contents(JPATH_BASE . '/docs/' . $archivo)));
+}
+
+/**
+ * Crea o actualiza una categoría (buscándola por alias) y devuelve su id.
+ */
+function guardarCategoria(DatabaseDriver $db, User $usuario, string $extension, string $titulo, string $alias): int
+{
+    $categoria = new Category($db);
+    $categoria->setCurrentUser($usuario);
+    $id = buscarId($db, '#__categories', ['extension' => $extension, 'alias' => $alias]);
+
+    if (!$id) {
+        $categoria->setLocation($categoria->getRootId(), 'last-child');
+    }
+
+    guardar($categoria, $id, [
+        'extension'   => $extension,
+        'title'       => $titulo,
+        'alias'       => $alias,
+        'description' => '',
+        'published'   => 1,
+        'access'      => 1,
+        'language'    => '*',
+        'params'      => '{"category_layout":"","image":"","image_alt":""}',
+        'metadesc'    => '',
+        'metakey'     => '',
+        'metadata'    => '{"author":"","robots":""}',
+    ], 'categoría "' . $titulo . '"');
+    $categoria->rebuildPath($categoria->id);
+
+    return (int) $categoria->id;
+}
+
+/**
+ * Crea o actualiza un artículo (buscándolo por categoría y alias) y devuelve su id.
+ *
+ * Además de la tabla #__content, Joomla necesita que cada artículo esté en una
+ * etapa del flujo de publicación (#__workflow_associations): sin ese registro
+ * el artículo no aparece en el listado de Content → Articles.
+ */
+function guardarArticulo(DatabaseDriver $db, User $usuario, int $catId, string $alias, array $datos, string $descripcion): int
+{
+    $articulo = new Content($db);
+    $articulo->setCurrentUser($usuario);
+    $id = buscarId($db, '#__content', ['catid' => $catId, 'alias' => $alias]);
+
+    guardar($articulo, $id, array_merge([
+        'introtext'  => '',
+        'fulltext'   => '',
+        'state'      => 1,
+        'access'     => 1,
+        'language'   => '*',
+        'featured'   => 0,
+        'images'     => '{}',
+        'urls'       => '{}',
+        'attribs'    => '{}',
+        'metakey'    => '',
+        'metadesc'   => '',
+        'metadata'   => '{"robots":"","author":"","rights":""}',
+        'note'       => '',
+        'created_by' => (int) $usuario->id,
+    ], $datos, ['catid' => $catId, 'alias' => $alias]), $descripcion);
+
+    $articuloId = (int) $articulo->id;
+
+    if (!buscarId($db, '#__workflow_associations', ['extension' => 'com_content.article', 'item_id' => $articuloId], 'item_id')) {
+        $etapaId = (int) $db->setQuery(
+            $db->createQuery()
+                ->select($db->quoteName('s.id'))
+                ->from($db->quoteName('#__workflow_stages', 's'))
+                ->join('INNER', $db->quoteName('#__workflows', 'w'), $db->quoteName('w.id') . ' = ' . $db->quoteName('s.workflow_id'))
+                ->where($db->quoteName('w.extension') . ' = ' . $db->quote('com_content.article'))
+                ->where($db->quoteName('w.default') . ' = 1')
+                ->where($db->quoteName('s.default') . ' = 1'),
+            0,
+            1
+        )->loadResult();
+
+        $db->setQuery(
+            $db->createQuery()
+                ->insert($db->quoteName('#__workflow_associations'))
+                ->columns($db->quoteName(['item_id', 'stage_id', 'extension']))
+                ->values($articuloId . ', ' . $etapaId . ', ' . $db->quote('com_content.article'))
+        )->execute();
+    }
+
+    return $articuloId;
+}
+
+/**
+ * Deja el módulo visible solo en los ítems de menú indicados.
+ */
+function asignarModulo(DatabaseDriver $db, int $moduloId, array $menuIds): void
+{
+    $db->setQuery(
+        $db->createQuery()
+            ->delete($db->quoteName('#__modules_menu'))
+            ->where($db->quoteName('moduleid') . ' = ' . $moduloId)
+    )->execute();
+
+    foreach ($menuIds as $menuId) {
+        $db->setQuery(
+            $db->createQuery()
+                ->insert($db->quoteName('#__modules_menu'))
+                ->columns($db->quoteName(['moduleid', 'menuid']))
+                ->values($moduloId . ', ' . (int) $menuId)
+        )->execute();
+    }
+}
+
+/**
+ * Devuelve el id de la extensión de un componente (por ejemplo com_content).
+ */
+function idComponente(DatabaseDriver $db, string $componente): int
+{
+    return buscarId($db, '#__extensions', ['type' => 'component', 'element' => $componente], 'extension_id');
 }
 
 function informar(string $accion, string $descripcion): void
