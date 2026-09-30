@@ -89,6 +89,11 @@
   --accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%237d0b11' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
 }
 
+/* Blog en columnas (Campañas): el título de cada tarjeta, más chico que un h2 a ancho completo */
+.blog-items[class*="columns-"] .page-header h2 {
+  font-size: 1.35rem;
+}
+
 .btn-close {
   --btn-close-focus-shadow: 0 0 0 .25rem #b0101840;
 }

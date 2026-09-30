@@ -124,7 +124,7 @@ function leerHtml(string $archivo): string
 /**
  * Crea o actualiza una categoría (buscándola por alias) y devuelve su id.
  */
-function guardarCategoria(DatabaseDriver $db, User $usuario, string $extension, string $titulo, string $alias): int
+function guardarCategoria(DatabaseDriver $db, User $usuario, string $extension, string $titulo, string $alias, string $descripcion = ''): int
 {
     $categoria = new Category($db);
     $categoria->setCurrentUser($usuario);
@@ -138,7 +138,7 @@ function guardarCategoria(DatabaseDriver $db, User $usuario, string $extension, 
         'extension'   => $extension,
         'title'       => $titulo,
         'alias'       => $alias,
-        'description' => '',
+        'description' => $descripcion,
         'published'   => 1,
         'access'      => 1,
         'language'    => '*',
