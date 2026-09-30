@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="48" viewBox="0 0 260 48">
+  <!--
+    Fuente del logo DonaVida (TP2-9). El sitio usa la versión PNG
+    (images/donavida/logo-donavida.png), exportada al doble de resolución,
+    porque el gestor de medios de Joomla no acepta SVG por defecto.
+    Texto en Roboto Bold + Regular; en blanco para ir sobre el header rojo.
+  -->
+  <path d="M22 2 C16.5 11, 7 20.5, 7 31 A15 15 0 0 0 37 31 C37 20.5, 27.5 11, 22 2 Z" fill="#fff"/>
+  <path transform="translate(14.56 24.44) scale(0.62)" fill="#b01018"
+        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+  <text x="46" y="34" font-family="Roboto, sans-serif" font-size="28" fill="#fff"><tspan font-weight="700">Dona</tspan><tspan font-weight="400">Vida</tspan></text>
+</svg>

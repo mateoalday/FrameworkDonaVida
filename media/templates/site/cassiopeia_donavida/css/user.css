@@ -30,6 +30,12 @@
   --focus-ring-color: #b0101840;
 }
 
+/* Logo: el PNG tiene el doble de resolución para pantallas de alta densidad */
+.container-header .brand-logo img {
+  height: 3rem;
+  width: auto;
+}
+
 /* Botones */
 .btn-primary {
   --btn-bg: #b01018;
