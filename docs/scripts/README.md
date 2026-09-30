@@ -17,6 +17,8 @@ Ejecuta todos los scripts. Se puede correr las veces que haga falta: lo que ya e
 | Script | Issue | Qué deja en la base |
 |---|---|---|
 | `plantilla.php` | TP2-9 | Plantilla hija registrada y predeterminada, con logo y Roboto; Main Menu en el header; portada "Inicio"; orden del menú |
+| `campanias.php` | TP2-6 | Categoría "Campañas" con los campos Fecha, Sede y Grupos buscados, las 5 campañas con imagen, ítem de menú "Campañas" y módulo "Próximas campañas" |
+| `imagenes-campanas.ps1` | TP2-6 | No toca la base: genera las imágenes de `images/campanas/` (ya están en git; `todo.php` no lo ejecuta) |
 | `requisitos.php` | TP2-8 | Categoría y artículo "Requisitos para donar sangre", ítem de menú "Requisitos" y módulo "Preguntas frecuentes" |
 | `sedes.php` | TP2-7 | Categoría y campo "Horarios", las 5 sedes, ítem de menú "Sedes" y módulo "Nuestras sedes" |
 | `comun.php` | – | Arranque de Joomla y funciones compartidas (no se ejecuta solo) |
