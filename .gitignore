@@ -1,0 +1,27 @@
+# Configuración local de Joomla (contiene la contraseña de la base de datos)
+configuration.php
+
+# Archivos temporales, caché y logs generados por Joomla
+/tmp/*
+!/tmp/index.html
+/cache/*
+!/cache/index.html
+/administrator/cache/*
+!/administrator/cache/index.html
+/administrator/logs/*
+!/administrator/logs/index.html
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Respaldos
+*.bak
+*.bak-*
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
