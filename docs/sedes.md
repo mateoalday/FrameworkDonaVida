@@ -12,7 +12,7 @@ Casi todo lo de esta sección se guarda en la base de datos (contactos, campo, m
 C:\xampp\php\php.exe docs\scripts\sedes.php
 ```
 
-Se puede ejecutar más de una vez: lo que ya existe se actualiza en lugar de duplicarse (busca cada elemento por su alias), y no toca el contenido de otras secciones. Usa las clases de Joomla, así que respeta el prefijo de tablas y los IDs de cada base. El contenido del módulo lo toma de `modulos/sedes.html`.
+Se puede ejecutar más de una vez: lo que ya existe se actualiza en lugar de duplicarse (busca cada elemento por su alias), y no toca el contenido de otras secciones. Usa las clases de Joomla, así que respeta el prefijo de tablas y los IDs de cada base. El contenido del módulo lo toma de `modulos/sedes.html`. `docs\scripts\todo.php` lo ejecuta junto con los scripts de las demás secciones (ver [scripts/README.md](scripts/README.md)).
 
 Los pasos manuales de abajo hacen lo mismo desde el panel.
 
