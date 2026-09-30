@@ -1,0 +1,38 @@
+<!--
+  Módulo "Portada - Por qué donar" (portada)
+  Tipo: Custom (mod_custom) · Posición: top-a · Sin título · Estilo: System-none
+  Asignación: solo Inicio
+
+  El estilo System-none evita que Cassiopeia envuelva el módulo en una tarjeta
+  (top-a usa el estilo "card" por defecto): las tarjetas las arma el HTML.
+
+  Bootstrap 5: grilla (row, col-md-4, g-4), tarjetas con h-100, rounded-3,
+  shadow-sm. Íconos de Font Awesome que trae Joomla (icon-hand-holding-heart,
+  icon-clock, icon-shield). Estilos propios en user.css (.por-que-donar).
+-->
+<section class="por-que-donar">
+  <h2 class="text-center fw-bold mb-4">¿Por qué donar?</h2>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="por-que-donar__item h-100 rounded-3 shadow-sm text-center">
+        <span class="icon-hand-holding-heart por-que-donar__icono" aria-hidden="true"></span>
+        <h3 class="h5 fw-bold mt-3">Una donación, varios pacientes</h3>
+        <p class="mb-0">La sangre se separa en glóbulos rojos, plasma y plaquetas, y cada componente puede ayudar a una persona distinta.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="por-que-donar__item h-100 rounded-3 shadow-sm text-center">
+        <span class="icon-clock por-que-donar__icono" aria-hidden="true"></span>
+        <h3 class="h5 fw-bold mt-3">Es rápido</h3>
+        <p class="mb-0">La extracción dura pocos minutos. Antes, un profesional te hace una breve entrevista y un control de salud.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="por-que-donar__item h-100 rounded-3 shadow-sm text-center">
+        <span class="icon-shield por-que-donar__icono" aria-hidden="true"></span>
+        <h3 class="h5 fw-bold mt-3">Es seguro</h3>
+        <p class="mb-0">Todo el material es estéril y descartable: se usa una sola vez con cada donante.</p>
+      </div>
+    </div>
+  </div>
+</section>
