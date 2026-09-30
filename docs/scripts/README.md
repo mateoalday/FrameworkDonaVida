@@ -21,6 +21,7 @@ Ejecuta todos los scripts. Se puede correr las veces que haga falta: lo que ya e
 | `imagenes-campanas.ps1` | TP2-6 | No toca la base: genera las imágenes de `images/campanas/` (ya están en git; `todo.php` no lo ejecuta) |
 | `requisitos.php` | TP2-8 | Categoría y artículo "Requisitos para donar sangre", ítem de menú "Requisitos" y módulo "Preguntas frecuentes" |
 | `sedes.php` | TP2-7 | Categoría y campo "Horarios", las 5 sedes, ítem de menú "Sedes" y módulo "Nuestras sedes" |
+| `usuarios.php` | – | Login Form despublicado y registro de usuarios desactivado (ver `docs/usuarios.md`) |
 | `comun.php` | – | Arranque de Joomla y funciones compartidas (no se ejecuta solo) |
 | `todo.php` | – | Ejecuta todos los anteriores; `plantilla.php` va al final porque ordena el menú |
 
