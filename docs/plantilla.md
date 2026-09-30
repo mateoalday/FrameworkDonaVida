@@ -13,6 +13,14 @@ Plantilla hija de Cassiopeia (`cassiopeia_donavida`) con la paleta, el logo, la 
 
 El resto (estilo, logo elegido, tipografía y menú) se guarda en la base de datos. Los pasos del panel están abajo.
 
+## Recrearla automáticamente
+
+[`scripts/plantilla.php`](scripts/plantilla.php) hace los pasos del panel en la base local: registra la plantilla hija si falta (lo mismo que System → Discover), la deja como predeterminada con el logo y Roboto, pasa Main Menu al header, renombra la portada como "Inicio" y ordena el menú principal por alias: `home`, `campanas`, `sedes`, `requisitos` (saltea los que no existan). Normalmente se ejecuta junto con los demás:
+
+```
+C:\xampp\php\php.exe docs\scripts\todo.php
+```
+
 ## Cambios respecto de Cassiopeia
 
 | Elemento | Cassiopeia original | DonaVida |

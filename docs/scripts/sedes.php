@@ -3,12 +3,6 @@
 /**
  * Crea o actualiza la sección Sedes (TP2-7) en la base de datos local.
  *
- * El contenido de Joomla vive en la base y no viaja con git, así que este
- * script lo recrea con las clases del propio Joomla: cada instalación genera
- * sus IDs, respeta su prefijo de tablas y mantiene los árboles de categorías
- * y menús. Se puede ejecutar varias veces: lo que ya existe se actualiza en
- * lugar de duplicarse, y no toca el contenido de otras secciones.
- *
  * Crea: la categoría de contactos "Sedes", el campo "Horarios", las 5 sedes,
  * el ítem de menú "Sedes" y el módulo "Nuestras sedes" (con el HTML de
  * docs/modulos/sedes.html). También ajusta tres opciones de Contactos.
@@ -16,59 +10,15 @@
  *
  * Uso, desde la carpeta del proyecto y con MySQL de XAMPP encendido:
  *   C:\xampp\php\php.exe docs\scripts\sedes.php
- *
- * Para probarlo sobre una copia de la base (con el mismo prefijo de tablas),
- * antes de ejecutarlo: set DONAVIDA_DB=nombre_de_la_copia
  */
 
-use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Category;
 use Joomla\CMS\Table\Menu;
 use Joomla\CMS\Table\Module;
-use Joomla\CMS\Table\Table;
-use Joomla\CMS\User\UserFactoryInterface;
 use Joomla\Component\Contact\Administrator\Table\ContactTable;
 use Joomla\Component\Fields\Administrator\Table\FieldTable;
-use Joomla\Database\DatabaseDriver;
-use Joomla\Database\DatabaseInterface;
 
-if (PHP_SAPI !== 'cli') {
-    http_response_code(403);
-    exit;
-}
-
-const _JEXEC = 1;
-
-define('JPATH_BASE', dirname(__DIR__, 2));
-require_once JPATH_BASE . '/includes/defines.php';
-
-if (!is_file(JPATH_CONFIGURATION . '/configuration.php')) {
-    fwrite(STDERR, "No se encontró configuration.php: primero hay que instalar Joomla.\n");
-    exit(1);
-}
-
-require_once JPATH_BASE . '/includes/framework.php';
-
-// Mismo arranque que cli/joomla.php, sin ejecutar la consola
-$container = Factory::getContainer();
-$container->alias('session', 'session.cli')
-    ->alias('JSession', 'session.cli')
-    ->alias(\Joomla\CMS\Session\Session::class, 'session.cli')
-    ->alias(\Joomla\Session\Session::class, 'session.cli')
-    ->alias(\Joomla\Session\SessionInterface::class, 'session.cli');
-
-$app                  = $container->get(\Joomla\Console\Application::class);
-Factory::$application = $app;
-
-// La consola lo hace al ejecutarse: registra las clases de los componentes (Contactos, Campos)
-$app->createExtensionNamespaceMap();
-
-/** @var DatabaseDriver $db */
-$db = $container->get(DatabaseInterface::class);
-
-if ($copia = getenv('DONAVIDA_DB')) {
-    $db->select($copia);
-}
+require __DIR__ . '/comun.php';
 
 $sedes = [
     ['Sede Neuquén Centro', 'sede-neuquen-centro', 'neuquen@donavida.org', 'Av. Argentina 1200', 'Neuquén', 'Neuquén', '0299 400-1001', 'Lun a vie, 8 a 13 h'],
@@ -78,50 +28,7 @@ $sedes = [
     ['Sede Centenario', 'sede-centenario', 'centenario@donavida.org', 'Av. Libertador 150', 'Centenario', 'Neuquén', '0299 400-1005', 'Lun, mié y vie, 8 a 12 h'],
 ];
 
-/**
- * Devuelve el id de la primera fila que cumple todas las condiciones, o 0.
- */
-function buscarId(DatabaseDriver $db, string $tabla, array $condiciones): int
-{
-    $query = $db->createQuery()
-        ->select($db->quoteName('id'))
-        ->from($db->quoteName($tabla));
-
-    foreach ($condiciones as $columna => $valor) {
-        $query->where($db->quoteName($columna) . ' = ' . $db->quote($valor));
-    }
-
-    return (int) $db->setQuery($query, 0, 1)->loadResult();
-}
-
-/**
- * Carga la fila existente (si hay) y guarda los datos con las validaciones de Joomla.
- */
-function guardar(Table $tabla, int $id, array $datos, string $descripcion): void
-{
-    if ($id) {
-        $tabla->load($id);
-    }
-
-    if (!$tabla->bind($datos) || !$tabla->check() || !$tabla->store()) {
-        throw new RuntimeException($descripcion . ': ' . $tabla->getError());
-    }
-
-    echo '  ' . ($id ? 'actualizado' : 'creado     ') . '  ' . $descripcion . PHP_EOL;
-}
-
 try {
-    // Autor de lo que se crea: el primer Super User de la instalación
-    $adminId = (int) $db->setQuery(
-        $db->createQuery()
-            ->select('MIN(' . $db->quoteName('user_id') . ')')
-            ->from($db->quoteName('#__user_usergroup_map'))
-            ->where($db->quoteName('group_id') . ' = 8')
-    )->loadResult();
-
-    $usuario = $container->get(UserFactoryInterface::class)->loadUserById($adminId);
-    $app->loadIdentity($usuario);
-
     echo 'Sección Sedes en la base "' . $db->setQuery('SELECT DATABASE()')->loadResult() . '"' . PHP_EOL;
 
     // 1. Categoría de contactos
@@ -175,23 +82,23 @@ try {
     $campoId = (int) $campo->id;
 
     // 3. Opciones de Contactos: email visible y sin formulario (no hay correo en local)
-    $opcionesQuery = $db->createQuery()
-        ->select([$db->quoteName('extension_id'), $db->quoteName('params')])
-        ->from($db->quoteName('#__extensions'))
-        ->where($db->quoteName('element') . ' = ' . $db->quote('com_contact'))
-        ->where($db->quoteName('type') . ' = ' . $db->quote('component'));
-    $componente = $db->setQuery($opcionesQuery)->loadObject();
-
-    $opciones = json_decode($componente->params ?: '{}', true) ?: [];
-    $opciones = array_merge($opciones, ['show_email' => '1', 'show_email_headings' => '1', 'show_email_form' => '0']);
+    $componente = $db->setQuery(
+        $db->createQuery()
+            ->select([$db->quoteName('extension_id'), $db->quoteName('params')])
+            ->from($db->quoteName('#__extensions'))
+            ->where($db->quoteName('element') . ' = ' . $db->quote('com_contact'))
+            ->where($db->quoteName('type') . ' = ' . $db->quote('component'))
+    )->loadObject();
 
     $db->setQuery(
         $db->createQuery()
             ->update($db->quoteName('#__extensions'))
-            ->set($db->quoteName('params') . ' = ' . $db->quote(json_encode($opciones)))
+            ->set($db->quoteName('params') . ' = ' . $db->quote(
+                combinarParams($componente->params, ['show_email' => '1', 'show_email_headings' => '1', 'show_email_form' => '0'])
+            ))
             ->where($db->quoteName('extension_id') . ' = ' . (int) $componente->extension_id)
     )->execute();
-    echo '  actualizado  opciones de Contactos' . PHP_EOL;
+    informar('actualizado', 'opciones de Contactos');
 
     // 4. Sedes, cada una con su horario en el campo personalizado
     foreach ($sedes as [$nombre, $alias, $email, $direccion, $ciudad, $provincia, $telefono, $horarios]) {
@@ -246,9 +153,7 @@ try {
     }
 
     // 5. Ítem de menú: listado de la categoría Sedes
-    $menuTipo = buscarId($db, '#__menu_types', ['menutype' => 'mainmenu', 'client_id' => 0]);
-
-    if (!$menuTipo) {
+    if (!buscarId($db, '#__menu_types', ['menutype' => 'mainmenu', 'client_id' => 0])) {
         throw new RuntimeException('no existe el menú "mainmenu" (Main Menu)');
     }
 
