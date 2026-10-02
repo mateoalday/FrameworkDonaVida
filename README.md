@@ -4,6 +4,35 @@ Sitio informativo de DonaVida, red de donación de sangre: campañas, sedes y re
 
 Trabajo Práctico N°2 de Frameworks e Interoperabilidad (UNCo) — Grupo Código Rojo: Matteo Alday, Fidel Pizarro, Joaquín Vulcano.
 
+## Qué es nuestro
+
+El repositorio tiene casi 10.000 archivos, pero **casi todos son de Joomla**: vienen tal cual en el paquete que se descarga de joomla.org (`Joomla_5.4.9-Stable-Full_Package.zip`) y no los modificamos. Están versionados para que el sitio se pueda levantar clonando el repo, y para que el primer commit muestre Joomla recién instalado y cada commit posterior, exactamente qué cambiamos.
+
+Lo que hicimos nosotros son unos 50 archivos, en estas carpetas:
+
+| Carpeta o archivo | Qué es | Quién |
+|---|---|---|
+| [`templates/cassiopeia_donavida/`](templates/cassiopeia_donavida/) | Plantilla hija de Cassiopeia y sus overrides: diseño `proximas` del módulo de campañas, diseño `acordeon` de las preguntas frecuentes y formato de fecha `dd/mm/aaaa` | Joaquín (plantilla), Fidel (overrides) |
+| [`media/templates/site/cassiopeia_donavida/css/user.css`](media/templates/site/cassiopeia_donavida/css/user.css) | Estilos propios: paleta roja #B01018 sobre las variables de Bootstrap y Cassiopeia, acordeón, blog en columnas y portada | Los tres |
+| [`images/donavida/`](images/donavida/) y [`images/campanas/`](images/campanas/) | Logo de DonaVida e imágenes de las campañas | Joaquín (logo), Fidel (campañas) |
+| [`docs/scripts/`](docs/scripts/) | Scripts que cargan el contenido de cada sección en la base local (Joomla guarda el contenido en la base, no en archivos) | Joaquín (`comun.php`, `todo.php`, `sedes.php`, `plantilla.php`), Fidel (`campanias.php`, `requisitos.php`, `usuarios.php`, imágenes), Matteo (`portada.php`) |
+| [`docs/modulos/`](docs/modulos/) y [`docs/articulos/`](docs/articulos/) | HTML de los módulos y artículos, armado con clases de Bootstrap | Los tres |
+| `docs/sedes.md`, `campanias.md`, `requisitos.md`, `portada.md`, `plantilla.md`, `usuarios.md` | Paso a paso y decisiones de cada sección | Cada uno la suya |
+| [`docs/antes/`](docs/antes/) y [`docs/despues/`](docs/despues/) | Capturas del sitio sin modificar y terminado | Matteo (antes), Fidel y Joaquín (después) |
+| [`docs/modificaciones.md`](docs/modificaciones.md) | Tabla de cambios respecto de Joomla y Cassiopeia | Los tres |
+| `README.md` y `.gitignore` | Este archivo y la lista de lo que no se sube (por ejemplo `configuration.php`, que tiene la contraseña de la base) | Matteo, Joaquín |
+
+Lo que se ve en el sitio por sección:
+
+- **Sedes** (Joaquín): componente Contactos adaptado con 5 sedes y el campo "Horarios", y el módulo "Nuestras sedes" en la portada.
+- **Campañas** (Fidel): 5 campañas con campos de fecha, sede y grupos buscados, el blog en tres columnas y el módulo "Próximas campañas" con tarjetas.
+- **Requisitos** (Fidel): página de requisitos y el módulo "Preguntas frecuentes" con el acordeón de Bootstrap.
+- **Portada** (Matteo): hero, "¿Por qué donar?" y pie de página.
+- **Plantilla** (Joaquín): paleta, logo, tipografía y menú en el header.
+- **Sitio sin login** (Fidel): sin formulario de ingreso ni registro; el panel queda en `/administrator`.
+
+El resto de las carpetas (`administrator/`, `components/`, `libraries/`, `modules/`, `plugins/`, etc.) es el núcleo de Joomla sin cambios.
+
 ## Stack
 
 - **CMS:** Joomla 5.4.9
