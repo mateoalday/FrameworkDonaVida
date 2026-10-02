@@ -29,7 +29,7 @@ Lo que se ve en el sitio por sección:
 - **Requisitos** (Fidel): página de requisitos y el módulo "Preguntas frecuentes" con el acordeón de Bootstrap.
 - **Portada** (Matteo): hero, "¿Por qué donar?" y pie de página.
 - **Plantilla** (Joaquín): paleta, logo, tipografía y menú en el header.
-- **Sitio sin login** (Fidel): sin formulario de ingreso ni registro; el panel queda en `/administrator`.
+
 
 El resto de las carpetas (`administrator/`, `components/`, `libraries/`, `modules/`, `plugins/`, etc.) es el núcleo de Joomla sin cambios.
 
