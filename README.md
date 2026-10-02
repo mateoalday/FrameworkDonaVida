@@ -12,7 +12,7 @@ Lo que hicimos nosotros son unos 50 archivos, en estas carpetas:
 
 | Carpeta o archivo | Qué es | Quién |
 |---|---|---|
-| [`templates/cassiopeia_donavida/`](templates/cassiopeia_donavida/) | Plantilla hija de Cassiopeia y sus overrides: diseño `proximas` del módulo de campañas, diseño `acordeon` de las preguntas frecuentes y formato de fecha `dd/mm/aaaa` | Joaquín (plantilla), Fidel (overrides) |
+| [`templates/cassiopeia_donavida/`](templates/cassiopeia_donavida/) | Plantilla hija de Cassiopeia y sus overrides: diseño `proximas` del módulo de campañas, diseño `acordeon` de las preguntas frecuentes y formato de fecha `dd/mm/aaaa` | L tres |
 | [`media/templates/site/cassiopeia_donavida/css/user.css`](media/templates/site/cassiopeia_donavida/css/user.css) | Estilos propios: paleta roja #B01018 sobre las variables de Bootstrap y Cassiopeia, acordeón, blog en columnas y portada | Los tres |
 | [`images/donavida/`](images/donavida/) y [`images/campanas/`](images/campanas/) | Logo de DonaVida e imágenes de las campañas | Joaquín (logo), Fidel (campañas) |
 | [`docs/scripts/`](docs/scripts/) | Scripts que cargan el contenido de cada sección en la base local (Joomla guarda el contenido en la base, no en archivos) | Joaquín (`comun.php`, `todo.php`, `sedes.php`, `plantilla.php`), Fidel (`campanias.php`, `requisitos.php`, `usuarios.php`, imágenes), Matteo (`portada.php`) |
