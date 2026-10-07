@@ -94,6 +94,21 @@
   font-size: 1.35rem;
 }
 
+/* Página de una campaña: la imagen arriba y el texto debajo.
+   Cassiopeia la hace flotar a la izquierda, y en pantallas anchas el texto
+   quedaba apretado en una franja angosta a la derecha. Con 720px de ancho
+   máximo, la imagen y el texto entran juntos en la pantalla. */
+.com-content-article .item-image {
+  float: none;
+  margin: 0 0 1rem;
+}
+
+.com-content-article .item-image img {
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+}
+
 .btn-close {
   --btn-close-focus-shadow: 0 0 0 .25rem #b0101840;
 }
